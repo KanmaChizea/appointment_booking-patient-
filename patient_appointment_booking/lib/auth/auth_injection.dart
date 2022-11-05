@@ -1,13 +1,13 @@
 import 'package:get_it/get_it.dart';
-import 'package:patient_appointment_booking/auth/data/repositories/auth_repository.dart';
-import 'package:patient_appointment_booking/auth/data/source/auth_datasource.dart';
-import 'package:patient_appointment_booking/auth/domain/repositories/auth_interface.dart';
-import 'package:patient_appointment_booking/auth/domain/usecases/check_login_status.dart';
-import 'package:patient_appointment_booking/auth/domain/usecases/create_account.dart';
-import 'package:patient_appointment_booking/auth/presentation/bloc/bloc/auth_bloc.dart';
 
+import 'data/repositories/auth_repository.dart';
+import 'data/source/auth_datasource.dart';
+import 'domain/repositories/auth_interface.dart';
+import 'domain/usecases/check_login_status.dart';
+import 'domain/usecases/create_account.dart';
 import 'domain/usecases/sign_in.dart';
 import 'domain/usecases/sign_out.dart';
+import 'presentation/bloc/bloc/auth_bloc.dart';
 
 final _sl = GetIt.instance;
 

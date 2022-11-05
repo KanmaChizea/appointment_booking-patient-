@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../model/userdata_model.dart';
 
 import '../../domain/entitis/user_data.dart';
+import '../model/userdata_model.dart';
 
 class AuthDataSource {
   final _auth = FirebaseAuth.instance;

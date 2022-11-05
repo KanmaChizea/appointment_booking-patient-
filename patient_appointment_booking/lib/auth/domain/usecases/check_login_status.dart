@@ -1,4 +1,4 @@
-import 'package:patient_appointment_booking/auth/domain/entitis/user_entity.dart';
+import '../entitis/user_entity.dart';
 
 import '../repositories/auth_interface.dart';
 

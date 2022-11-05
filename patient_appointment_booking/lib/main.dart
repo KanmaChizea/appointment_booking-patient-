@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/auth/presentation/bloc/auth_cubit.dart';
-import 'package:patient_appointment_booking/auth/presentation/bloc/bloc/auth_bloc.dart';
-import 'package:patient_appointment_booking/auth/presentation/screens/auth_screen.dart';
+import 'auth/presentation/bloc/auth_cubit.dart';
+import 'auth/presentation/bloc/bloc/auth_bloc.dart';
+import 'auth/presentation/screens/auth_screen.dart';
 import 'depenency_injection.dart' as di;
 import 'firebase_options.dart';
 

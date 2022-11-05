@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/auth/presentation/bloc/auth_cubit.dart';
-import 'package:patient_appointment_booking/auth/presentation/widgets/login.dart';
-import 'package:patient_appointment_booking/auth/presentation/widgets/signup.dart';
+import '../bloc/auth_cubit.dart';
+import '../widgets/login.dart';
+import '../widgets/signup.dart';
 
 import '../bloc/bloc/auth_bloc.dart';
 

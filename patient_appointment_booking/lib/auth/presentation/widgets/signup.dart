@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/auth/domain/entitis/user_data.dart';
-import 'package:patient_appointment_booking/auth/presentation/bloc/bloc/auth_bloc.dart';
+import '../../domain/entitis/user_data.dart';
+import '../bloc/bloc/auth_bloc.dart';
 
 import 'authform_layout.dart';
 
