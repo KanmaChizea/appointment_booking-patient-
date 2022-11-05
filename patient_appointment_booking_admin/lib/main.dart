@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_appointment_booking_admin/firebase_options.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
