@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../dashboard/data/models/dashboard_element.dart';
+import '../dashboard/presentation/screens/appointment.dart';
+import '../dashboard/presentation/screens/history.dart';
+import '../dashboard/presentation/screens/profile.dart';
 
 List<DashboardElement> dashboardElementList = [
   DashboardElement(
@@ -8,17 +11,17 @@ List<DashboardElement> dashboardElementList = [
       icon: Icons.calendar_month_outlined,
       subtitle: 'Manage Your Upcoming Appointments',
       buttonText: 'View Appointments',
-      route: Container()),
+      route: const AppointmentsScreen()),
   DashboardElement(
       title: 'Appointment History',
       icon: Icons.history,
       subtitle: 'View Your Appointment History',
       buttonText: 'See History',
-      route: Container()),
+      route: const HistoryScreen()),
   DashboardElement(
       title: 'Profile',
       icon: Icons.account_circle_outlined,
       subtitle: 'Edit Your Profile',
       buttonText: 'Edit Profile',
-      route: Container()),
+      route: const ProfileScreen()),
 ];

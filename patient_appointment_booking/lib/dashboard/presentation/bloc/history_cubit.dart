@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/usecases/appointment_history.dart';
+import '../../domain/entities/appontments.dart';
+import '../../domain/usecases/appointment_history.dart';
 
 class HistoryState extends Equatable {
   @override

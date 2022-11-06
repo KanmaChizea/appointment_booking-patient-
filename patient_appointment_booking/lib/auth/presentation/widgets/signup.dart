@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/entitis/user_data.dart';
 import '../bloc/bloc/auth_bloc.dart';
-
 import 'authform_layout.dart';
 
 class Signup extends StatefulWidget {

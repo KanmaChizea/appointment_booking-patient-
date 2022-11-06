@@ -1,10 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dashboard/presentation/screens/dashboard.dart';
+
 import 'auth/presentation/bloc/auth_cubit.dart';
 import 'auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'auth/presentation/screens/auth_screen.dart';
+import 'dashboard/presentation/bloc/appointment_management_cubit.dart';
+import 'dashboard/presentation/bloc/book_appointment_cubit.dart';
+import 'dashboard/presentation/bloc/history_cubit.dart';
+import 'dashboard/presentation/bloc/profile_cubit.dart';
+import 'dashboard/presentation/screens/dashboard.dart';
 import 'depenency_injection.dart' as di;
 import 'firebase_options.dart';
 
@@ -30,6 +35,18 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AuthCubit(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<AppointmentManagementCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<BookingCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<HistoryCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<ProfileCubit>(),
         ),
       ],
       child: MaterialApp(

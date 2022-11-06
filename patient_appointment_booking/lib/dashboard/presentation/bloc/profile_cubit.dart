@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/auth/domain/entitis/user_data.dart';
+import '../../../auth/domain/entitis/user_data.dart';
 
 import '../../domain/usecases/edit_profile.dart';
 

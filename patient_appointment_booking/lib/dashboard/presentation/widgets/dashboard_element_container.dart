@@ -29,7 +29,8 @@ class DashboardElementContainer extends StatelessWidget {
               style: const TextStyle(fontSize: 16)),
           const SizedBox(height: 32),
           TextButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => dashboardElement.route)),
             style: TextButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 30),

@@ -1,6 +1,6 @@
-import 'package:patient_appointment_booking/dashboard/data/source/dashboard_datasource.dart';
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/repositories/dashboard_interface.dart';
+import '../source/dashboard_datasource.dart';
+import '../../domain/entities/appontments.dart';
+import '../../domain/repositories/dashboard_interface.dart';
 
 import '../../../auth/domain/entitis/user_data.dart';
 

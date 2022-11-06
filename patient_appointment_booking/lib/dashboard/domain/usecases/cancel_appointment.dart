@@ -1,5 +1,5 @@
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/repositories/dashboard_interface.dart';
+import '../entities/appontments.dart';
+import '../repositories/dashboard_interface.dart';
 
 class CancelAppointmentUsecase {
   CancelAppointmentUsecase(DashboardInterface dashboardInterface)

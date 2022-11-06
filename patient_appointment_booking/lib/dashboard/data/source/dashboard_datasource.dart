@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:patient_appointment_booking/dashboard/data/models/appointment_model.dart';
+import '../models/appointment_model.dart';
 
 import '../../../auth/domain/entitis/user_data.dart';
 import '../../domain/entities/appontments.dart';

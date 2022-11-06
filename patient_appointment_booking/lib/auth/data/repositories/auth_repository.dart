@@ -1,8 +1,8 @@
+import '../../domain/entitis/user_data.dart';
+import '../../domain/entitis/user_entity.dart';
+import '../../domain/repositories/auth_interface.dart';
 import '../model/user_model.dart';
 import '../source/auth_datasource.dart';
-import '../../domain/entitis/user_entity.dart';
-import '../../domain/entitis/user_data.dart';
-import '../../domain/repositories/auth_interface.dart';
 
 class AuthRepository implements AuthInterface {
   AuthRepository({required AuthDataSource authDataSource})

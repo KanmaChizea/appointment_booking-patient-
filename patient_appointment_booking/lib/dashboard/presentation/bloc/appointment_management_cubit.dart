@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/usecases/active_appointments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/usecases/cancel_appointment.dart';
+import '../../domain/entities/appontments.dart';
+import '../../domain/usecases/active_appointments.dart';
+import '../../domain/usecases/cancel_appointment.dart';
 
 class AppointmentState extends Equatable {
   @override

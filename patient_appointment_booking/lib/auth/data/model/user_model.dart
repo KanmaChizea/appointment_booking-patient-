@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import '../../domain/entitis/user_entity.dart';
 
 import '../../domain/entitis/user_data.dart';
+import '../../domain/entitis/user_entity.dart';
 import 'userdata_model.dart';
 
 class UserModel extends Equatable {

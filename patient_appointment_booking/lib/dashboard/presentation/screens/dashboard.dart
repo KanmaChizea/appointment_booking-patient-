@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/constants.dart';
-
 import '../../../core/responsive.dart';
-import '../widgets/book_appointment_button.dart';
-import '../widgets/welcome_user.dart';
-
 import '../widgets/appbar.dart';
+import '../widgets/book_appointment_button.dart';
 import '../widgets/dashboard_element_container.dart';
+import '../widgets/welcome_user.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});

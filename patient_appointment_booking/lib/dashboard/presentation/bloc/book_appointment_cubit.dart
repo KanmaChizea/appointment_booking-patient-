@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
-import 'package:patient_appointment_booking/dashboard/domain/usecases/book_appointment.dart';
+import '../../domain/entities/appontments.dart';
+import '../../domain/usecases/book_appointment.dart';
 
 class BookingType extends Equatable {
   @override

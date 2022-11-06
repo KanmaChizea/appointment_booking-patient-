@@ -1,4 +1,4 @@
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
+import '../entities/appontments.dart';
 
 import '../../../auth/domain/entitis/user_data.dart';
 

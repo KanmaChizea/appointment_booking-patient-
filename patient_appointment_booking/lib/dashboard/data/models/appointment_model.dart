@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:patient_appointment_booking/dashboard/domain/entities/appontments.dart';
+import '../../domain/entities/appontments.dart';
 
 class AppointmentModel extends Equatable {
   final String id;

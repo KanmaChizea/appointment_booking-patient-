@@ -1,5 +1,4 @@
 import '../entitis/user_entity.dart';
-
 import '../repositories/auth_interface.dart';
 
 class CheckLoginStatusUsecase {
