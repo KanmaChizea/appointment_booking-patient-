@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../model/user_model.dart';
 import '../source/auth_datasource.dart';
 import '../../domain/entitis/user_entity.dart';
@@ -45,7 +43,7 @@ class AuthRepository implements AuthInterface {
 
   @override
   Future<UserEntity?> fetchUser() async {
-    final user = _dataSource.fetchUser;
+    final user = await _dataSource.fetchUser;
     if (user != null) {
       final userdata = await _dataSource.fetchData(user.uid);
       return UserModel(email: user.email ?? '', userdata: userdata).toEntity();

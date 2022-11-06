@@ -5,9 +5,9 @@ import 'package:equatable/equatable.dart';
 import 'user_data.dart';
 
 class UserEntity extends Equatable {
-  String email;
-  UserData userdata;
-  UserEntity({
+  final String email;
+  final UserData userdata;
+  const UserEntity({
     required this.email,
     required this.userdata,
   });
@@ -56,5 +56,6 @@ class UserEntity extends Equatable {
   @override
   int get hashCode => email.hashCode ^ userdata.hashCode;
 
+  @override
   List<Object?> get props => [email, userdata];
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dashboard/presentation/screens/dashboard.dart';
 import 'auth/presentation/bloc/auth_cubit.dart';
 import 'auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'auth/presentation/screens/auth_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.sl<AuthBloc>(),
+          create: (context) => di.sl<AuthBloc>()..add(CheckAuthStatus()),
         ),
         BlocProvider(
           create: (context) => AuthCubit(),
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             if (state is AuthSignIn) {
-              return Container();
+              return const Dashboard();
             } else {
               return const AuthScreen();
             }

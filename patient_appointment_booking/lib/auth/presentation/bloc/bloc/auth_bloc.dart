@@ -1,11 +1,10 @@
-import 'dart:async';
-
+import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
-import '../../../domain/usecases/check_login_status.dart';
+
 import '../../../domain/entitis/user_data.dart';
 import '../../../domain/entitis/user_entity.dart';
+import '../../../domain/usecases/check_login_status.dart';
 import '../../../domain/usecases/create_account.dart';
 import '../../../domain/usecases/sign_in.dart';
 import '../../../domain/usecases/sign_out.dart';

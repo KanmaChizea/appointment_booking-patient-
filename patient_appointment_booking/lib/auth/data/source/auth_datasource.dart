@@ -42,7 +42,9 @@ class AuthDataSource {
         .then((value) => UserDataModel.fromFirebase(value).toEntity());
   }
 
-  User? get fetchUser {
-    return _auth.currentUser;
+  Future<User?> get fetchUser async {
+    var firebaseUser = _auth.currentUser;
+    firebaseUser ??= await _auth.authStateChanges().first;
+    return firebaseUser;
   }
 }
