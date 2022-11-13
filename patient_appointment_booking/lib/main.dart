@@ -7,8 +7,10 @@ import 'auth/presentation/bloc/bloc/auth_bloc.dart';
 import 'auth/presentation/screens/auth_screen.dart';
 import 'dashboard/presentation/bloc/appointment_management_cubit.dart';
 import 'dashboard/presentation/bloc/book_appointment_cubit.dart';
+import 'dashboard/presentation/bloc/booked_hours_cubit.dart';
+import 'dashboard/presentation/bloc/edit_profile_cubit.dart';
 import 'dashboard/presentation/bloc/history_cubit.dart';
-import 'dashboard/presentation/bloc/profile_cubit.dart';
+import 'dashboard/presentation/bloc/user_data_cubit.dart';
 import 'dashboard/presentation/screens/dashboard.dart';
 import 'depenency_injection.dart' as di;
 import 'firebase_options.dart';
@@ -37,16 +39,23 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) => di.sl<AppointmentManagementCubit>(),
+          create: (context) =>
+              di.sl<AppointmentManagementCubit>()..getAppointments(),
         ),
         BlocProvider(
           create: (context) => di.sl<BookingCubit>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<HistoryCubit>(),
+          create: (context) => di.sl<HistoryCubit>()..getHistory(),
         ),
         BlocProvider(
-          create: (context) => di.sl<ProfileCubit>(),
+          create: (context) => di.sl<EditProfileCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<UserDataCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => di.sl<BookedHoursCubit>(),
         ),
       ],
       child: MaterialApp(

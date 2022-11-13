@@ -1,4 +1,3 @@
-import '../entitis/user_entity.dart';
 import '../repositories/auth_interface.dart';
 
 class CheckLoginStatusUsecase {
@@ -7,7 +6,7 @@ class CheckLoginStatusUsecase {
 
   final AuthInterface _authInterface;
 
-  Future<UserEntity?> call() async {
+  Future<String?> call() async {
     return await _authInterface.fetchUser();
   }
 }

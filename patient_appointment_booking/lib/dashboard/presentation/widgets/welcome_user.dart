@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../auth/presentation/bloc/bloc/auth_bloc.dart';
+import '../../../auth/domain/entitis/user_data.dart';
+import '../bloc/user_data_cubit.dart';
 
 class WelcomeUser extends StatelessWidget {
   const WelcomeUser({
@@ -10,15 +10,11 @@ class WelcomeUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocBuilder<UserDataCubit, UserData>(
       builder: (context, state) {
-        if (state is AuthSignedIn) {
-          final name =
-              '${state.userEntity.userdata.firstName[0]} ${state.userEntity.userdata.lastName}';
-          return Text('Hello, $name',
-              style: const TextStyle(color: Colors.black));
-        }
-        return const Text('Hello, Anon', style: TextStyle(color: Colors.black));
+        final name = '${state.firstName} ${state.lastName}';
+        return Text('Hello, $name',
+            style: const TextStyle(color: Colors.black));
       },
     );
   }

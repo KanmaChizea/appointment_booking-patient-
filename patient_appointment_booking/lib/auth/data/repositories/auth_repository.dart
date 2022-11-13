@@ -1,7 +1,5 @@
 import '../../domain/entitis/user_data.dart';
-import '../../domain/entitis/user_entity.dart';
 import '../../domain/repositories/auth_interface.dart';
-import '../model/user_model.dart';
 import '../source/auth_datasource.dart';
 
 class AuthRepository implements AuthInterface {
@@ -18,35 +16,32 @@ class AuthRepository implements AuthInterface {
   }
 
   @override
-  Future<UserEntity> signIn(String email, String password) async {
+  Future<String> signIn(String email, String password) async {
     try {
       final user = await _dataSource.signIn(email, password);
-      final data = await _dataSource.fetchData(user?.uid ?? '');
-      return UserModel(email: email, userdata: data).toEntity();
+      return user?.uid ?? '';
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<UserEntity> signUp(
+  Future<String> signUp(
       String email, String password, UserData userData) async {
     try {
       final user = await _dataSource.signUp(email, password);
       await _dataSource.saveData(userData, user?.uid ?? '');
-      final data = await _dataSource.fetchData(user?.uid ?? '');
-      return UserModel(email: email, userdata: data).toEntity();
+      return user?.uid ?? '';
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<UserEntity?> fetchUser() async {
+  Future<String?> fetchUser() async {
     final user = await _dataSource.fetchUser;
     if (user != null) {
-      final userdata = await _dataSource.fetchData(user.uid);
-      return UserModel(email: user.email ?? '', userdata: userdata).toEntity();
+      return user.uid;
     } else {
       return null;
     }

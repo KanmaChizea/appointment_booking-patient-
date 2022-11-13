@@ -1,22 +1,26 @@
-import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../models/appointment_model.dart';
 
+import '../../../auth/data/model/userdata_model.dart';
 import '../../../auth/domain/entitis/user_data.dart';
 import '../../domain/entities/appontments.dart';
+import '../models/appointment_model.dart';
 
 class DashboardDataSource {
   final _cloudStorage = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser?.uid;
 
-  Future<String> bookAppointment(AppointmentEntity appointment) async {
+  Future<String> bookAppointment(
+      AppointmentEntity appointment, List<String> index) async {
     final id =
         await _cloudStorage.collection('appt $uid').add(appointment.toMap());
+    if (index[0].length > 13) {
+      index = [appointment.time];
+    }
     await _cloudStorage
         .collection('booked')
-        .doc(appointment.date)
-        .set({Random().toString(): appointment.time});
+        .doc(appointment.date.replaceAll('/', '-'))
+        .set({for (var i = 0; i < index.length; i++) i.toString(): index[1]});
     return id.id;
   }
 
@@ -36,6 +40,14 @@ class DashboardDataSource {
             .toList());
   }
 
+  Stream<UserData> fetchData(String id) {
+    return _cloudStorage
+        .collection('user data')
+        .doc(id)
+        .snapshots()
+        .map((value) => UserDataModel.fromFirebase(value).toEntity());
+  }
+
   Future<List<AppointmentEntity>> getAppointmentHistory() async {
     return await _cloudStorage.collection('appt $uid').get().then((value) =>
         value.docs
@@ -46,8 +58,11 @@ class DashboardDataSource {
 
   Future<List<String>> getBookedTimes(String date) async {
     List<String> list = [];
-    await _cloudStorage.collection('booked').doc(date).get().then((value) =>
-        value
+    await _cloudStorage
+        .collection('booked')
+        .doc(date.replaceAll('/', '-'))
+        .get()
+        .then((value) => value
             .data()
             ?.values
             .forEach((element) => list.add(element.toString())));

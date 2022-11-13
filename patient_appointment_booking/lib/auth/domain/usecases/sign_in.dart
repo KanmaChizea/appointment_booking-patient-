@@ -1,4 +1,3 @@
-import '../entitis/user_entity.dart';
 import '../repositories/auth_interface.dart';
 
 class SignInUsecase {
@@ -6,7 +5,7 @@ class SignInUsecase {
 
   final AuthInterface _authInterface;
 
-  Future<UserEntity> call(String email, String password) async {
+  Future<String> call(String email, String password) async {
     return await _authInterface.signIn(email, password);
   }
 }

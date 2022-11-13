@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../domain/entitis/user_data.dart';
-import '../model/userdata_model.dart';
 
 class AuthDataSource {
   final _auth = FirebaseAuth.instance;
@@ -32,14 +31,6 @@ class AuthDataSource {
 
   Future<void> logout() async {
     await _auth.signOut();
-  }
-
-  Future<UserData> fetchData(String id) async {
-    return await _cloudStore
-        .collection('user data')
-        .doc(id)
-        .get()
-        .then((value) => UserDataModel.fromFirebase(value).toEntity());
   }
 
   Future<User?> get fetchUser async {

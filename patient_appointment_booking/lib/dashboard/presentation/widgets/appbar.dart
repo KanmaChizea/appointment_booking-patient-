@@ -10,19 +10,23 @@ import 'welcome_user.dart';
 class DashboardAppbar extends AppBar {
   DashboardAppbar({
     required BuildContext context,
+    required String title,
+    bool isLeading = false,
     Key? key,
   }) : super(
             key: key,
             elevation: 0,
             backgroundColor: Colors.transparent,
-            leading: Padding(
-              padding: const EdgeInsets.only(top: 12, left: 16),
-              child: Image.asset('logo.png'),
-            ),
+            leading: isLeading
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 12, left: 16),
+                    child: Image.asset('logo.png'),
+                  )
+                : const BackButton(color: Colors.black),
             title: Responsive.isDesktop(context)
-                ? const Text(
-                    'Patient Dashboard',
-                    style: TextStyle(color: Colors.black),
+                ? Text(
+                    title,
+                    style: const TextStyle(color: Colors.black),
                   )
                 : null,
             actions: [

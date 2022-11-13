@@ -1,5 +1,4 @@
 import '../entities/appontments.dart';
-
 import '../repositories/dashboard_interface.dart';
 
 class BookAppointmentUsecase {
@@ -7,7 +6,7 @@ class BookAppointmentUsecase {
       : _dashboardInterface = dashboardInterface;
   final DashboardInterface _dashboardInterface;
 
-  Future<String> call(AppointmentEntity appointment) async {
-    return await _dashboardInterface.bookAppointment(appointment);
+  Future<String> call(AppointmentEntity appointment, List<String> index) async {
+    return await _dashboardInterface.bookAppointment(appointment, index);
   }
 }

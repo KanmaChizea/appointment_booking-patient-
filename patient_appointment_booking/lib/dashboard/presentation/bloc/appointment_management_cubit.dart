@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/entities/appontments.dart';
 import '../../domain/usecases/active_appointments.dart';
 import '../../domain/usecases/cancel_appointment.dart';

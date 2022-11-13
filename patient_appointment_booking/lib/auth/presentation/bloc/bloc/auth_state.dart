@@ -10,13 +10,13 @@ abstract class AuthState extends Equatable {
 class AuthInitial extends AuthState {}
 
 class AuthSignedIn extends AuthState {
-  final UserEntity userEntity;
+  final String uid;
   const AuthSignedIn(
-    this.userEntity,
+    this.uid,
   );
 
   @override
-  List<Object> get props => [userEntity];
+  List<Object> get props => [uid];
 }
 
 class AuthLoading extends AuthState {}
