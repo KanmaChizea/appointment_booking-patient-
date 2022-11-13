@@ -39,6 +39,7 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Text('Signup',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),

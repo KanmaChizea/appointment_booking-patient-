@@ -42,14 +42,15 @@ class AuthScreen extends StatelessWidget {
                   child: const Text('Create an account')),
             ),
           ]),
-      body: Column(
+      body: ListView(
         children: [
           if (!Responsive.isDesktop(context))
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
               child: Text(
                 'UNIBEN Health Center Appointment Booking System',
-                style: TextStyle(color: Colors.black, fontSize: 36),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black, fontSize: 20),
               ),
             ),
           BlocListener<AuthBloc, AuthState>(
@@ -83,27 +84,24 @@ class AuthScreen extends StatelessWidget {
                     (route) => false);
               }
             },
-            child: SingleChildScrollView(
-                padding: const EdgeInsets.only(top: 36),
-                child: Center(
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 36, vertical: 48),
-                      width:
-                          MediaQuery.of(context).size.width > 390 ? 500 : null,
-                      decoration: BoxDecoration(
-                          border: MediaQuery.of(context).size.width > 650
-                              ? Border.all(width: 2, color: Colors.grey)
-                              : null),
-                      child: BlocBuilder<AuthCubit, bool>(
-                        builder: (context, state) {
-                          if (state) {
-                            return const Login();
-                          }
-                          return const Signup();
-                        },
-                      )),
-                )),
+            child: Center(
+              child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 36, vertical: 48),
+                  width: MediaQuery.of(context).size.width > 390 ? 500 : null,
+                  decoration: BoxDecoration(
+                      border: MediaQuery.of(context).size.width > 650
+                          ? Border.all(width: 2, color: Colors.grey)
+                          : null),
+                  child: BlocBuilder<AuthCubit, bool>(
+                    builder: (context, state) {
+                      if (state) {
+                        return const Login();
+                      }
+                      return const Signup();
+                    },
+                  )),
+            ),
           ),
         ],
       ),

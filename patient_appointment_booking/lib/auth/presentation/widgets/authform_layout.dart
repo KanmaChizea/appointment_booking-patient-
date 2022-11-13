@@ -16,7 +16,7 @@ class AuthFormLayout extends StatelessWidget {
         key: formKey,
         child: ListView.separated(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemBuilder: (context, index) => TextFormField(
                   controller: controllerList[index]['controller'],
                   validator: (value) =>
