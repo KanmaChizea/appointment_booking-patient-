@@ -45,9 +45,12 @@ class AuthScreen extends StatelessWidget {
       body: Column(
         children: [
           if (!Responsive.isDesktop(context))
-            const Text(
-              'UNIBEN Health Center Appointment Booking System',
-              style: TextStyle(color: Colors.black, fontSize: 36),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'UNIBEN Health Center Appointment Booking System',
+                style: TextStyle(color: Colors.black, fontSize: 36),
+              ),
             ),
           BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
