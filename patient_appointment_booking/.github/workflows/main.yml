@@ -15,13 +15,14 @@ jobs:
           with:
             channel: 'stable'
         - run: flutter pub get
+        - run: flutter config --enable-web
         - run: flutter build web
     - name: Copy build settings to build folder
           run: cp netlify.toml build/web/
     - name: Deploy production to Netlify
           uses: South-Paw/action-netlify-deploy@v1.2.0
           with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+            github-token: ${{ secrets.MY_GITHUB_TOKEN }}
             netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
             netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
             build-dir: './build/web'
