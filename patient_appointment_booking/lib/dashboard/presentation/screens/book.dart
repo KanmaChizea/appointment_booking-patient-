@@ -39,7 +39,7 @@ class BookingScreen extends StatelessWidget {
                         return Column(
                           children: [
                             const Icon(Icons.error,
-                                color: Colors.red, size: 36),
+                                color: Colors.red, size: 64),
                             const SizedBox(height: 16),
                             const Text('Something went wrong',
                                 style: TextStyle(
@@ -60,7 +60,7 @@ class BookingScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Icon(Icons.check_circle,
-                                color: Colors.green, size: 36),
+                                color: Colors.green, size: 64),
                             const SizedBox(height: 16),
                             const Text('Booking successful',
                                 style: TextStyle(
@@ -70,25 +70,28 @@ class BookingScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                     text: 'Your ticket no is ',
-                                    style: const TextStyle(fontSize: 16),
+                                    style: const TextStyle(
+                                        fontSize: 16, color: Colors.black),
                                     children: [
                                       TextSpan(
                                           text:
                                               '${state.id.substring(0, 10).toUpperCase()}.',
                                           style: const TextStyle(
                                               fontSize: 16,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.bold)),
                                       const TextSpan(
                                         text:
                                             "\n You'll be required to provide this number when you get to the health center to fulfill your appointment",
-                                        style: TextStyle(fontSize: 16),
+                                        style: TextStyle(
+                                            fontSize: 16, color: Colors.black),
                                       ),
                                     ])),
                             const SizedBox(height: 16),
                             ElevatedButton.icon(
                                 onPressed: () => Navigator.pop(context),
                                 label: const Text('Go home'),
-                                icon: const Icon(Icons.repeat))
+                                icon: const Icon(Icons.arrow_back))
                           ],
                         );
                       } else {

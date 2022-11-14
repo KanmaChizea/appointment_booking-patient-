@@ -61,10 +61,14 @@ class _SignupState extends State<Signup> {
             onPressed: () {
               if (_key.currentState!.validate()) {
                 final userData = UserData(
-                    firstName: firstName.text,
-                    lastName: lastName.text,
-                    department: department.text,
-                    faculty: faculty.text,
+                    firstName: firstName.text
+                        .replaceRange(0, 1, firstName.text[0].toUpperCase()),
+                    lastName: lastName.text
+                        .replaceRange(0, 1, lastName.text[0].toUpperCase()),
+                    department: department.text
+                        .replaceRange(0, 1, department.text[0].toUpperCase()),
+                    faculty: faculty.text
+                        .replaceRange(0, 1, faculty.text[0].toUpperCase()),
                     id: id.text);
                 context.read<AuthBloc>().add(AuthSignUp(
                     email: email.text,

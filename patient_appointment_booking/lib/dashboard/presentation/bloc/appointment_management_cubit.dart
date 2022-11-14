@@ -14,6 +14,9 @@ class AppointmentLoaded extends AppointmentState {
   final List<AppointmentEntity> appoinments;
 
   AppointmentLoaded(this.appoinments);
+
+  @override
+  List<Object?> get props => [appoinments.length];
 }
 
 class AppointmentInitial extends AppointmentState {}
@@ -36,8 +39,10 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
   Future<void> getAppointments() async {
     try {
       emit(AppointmentLoading());
-      final appointments = await _activeAppointmentUsecase();
-      emit(AppointmentLoaded(appointments));
+      final appointments = _activeAppointmentUsecase();
+      appointments.listen((event) {
+        emit(AppointmentLoaded(event));
+      });
     } catch (_) {
       emit(AppointmentFailed());
     }

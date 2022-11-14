@@ -32,8 +32,8 @@ class DashboardDataSource {
     await _cloudStorage.collection('user data').doc(uid).set(data.toMap());
   }
 
-  Future<List<AppointmentEntity>> getActiveAppointment() async {
-    return await _cloudStorage.collection('appt $uid').get().then((value) =>
+  Stream<List<AppointmentEntity>> getActiveAppointment() {
+    return _cloudStorage.collection('appt $uid').snapshots().map((value) =>
         value.docs
             .map((e) => AppointmentModel.fromFirebase(e).toEntity())
             .where((element) => element.status == true)

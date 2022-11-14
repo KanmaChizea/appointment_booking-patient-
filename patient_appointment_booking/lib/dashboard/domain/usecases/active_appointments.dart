@@ -7,7 +7,7 @@ class ActiveAppointmentUsecase {
       : _dashboardInterface = dashboardInterface;
   final DashboardInterface _dashboardInterface;
 
-  Future<List<AppointmentEntity>> call() async {
-    return await _dashboardInterface.getActiveAppointment();
+  Stream<List<AppointmentEntity>> call() {
+    return _dashboardInterface.getActiveAppointment();
   }
 }

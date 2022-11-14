@@ -13,7 +13,7 @@ class FailedState extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.error, size: 48),
+        const Icon(Icons.error, size: 64),
         const SizedBox(height: 16),
         const Text('Could not fetch appointment'),
         ElevatedButton(
