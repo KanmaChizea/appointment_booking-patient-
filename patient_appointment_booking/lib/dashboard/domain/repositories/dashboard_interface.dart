@@ -3,8 +3,7 @@ import '../entities/appontments.dart';
 import '../../../auth/domain/entitis/user_data.dart';
 
 abstract class DashboardInterface {
-  Future<String> bookAppointment(
-      AppointmentEntity appointment, List<String> index);
+  Future<String> bookAppointment(AppointmentEntity appointment);
   Stream<List<AppointmentEntity>> getActiveAppointment();
   Future<void> cancelAppointment(AppointmentEntity appointment);
   Future<List<AppointmentEntity>> getAppointmentHistory();

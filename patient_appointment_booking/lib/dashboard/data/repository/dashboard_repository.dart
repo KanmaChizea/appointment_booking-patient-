@@ -9,10 +9,9 @@ class DashboardRepository implements DashboardInterface {
       : _dataSource = dataSource;
   final DashboardDataSource _dataSource;
   @override
-  Future<String> bookAppointment(
-      AppointmentEntity appointment, List<String> index) async {
+  Future<String> bookAppointment(AppointmentEntity appointment) async {
     try {
-      return await _dataSource.bookAppointment(appointment, index);
+      return await _dataSource.bookAppointment(appointment);
     } catch (e) {
       rethrow;
     }

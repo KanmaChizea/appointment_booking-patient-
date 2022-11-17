@@ -41,6 +41,13 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
       emit(AppointmentLoading());
       final appointments = _activeAppointmentUsecase();
       appointments.listen((event) {
+        event.sort((a, b) {
+          int cmp = a.date.compareTo(b.date);
+          if (cmp != 0) {
+            return cmp;
+          }
+          return a.time.compareTo(b.time);
+        });
         emit(AppointmentLoaded(event));
       });
     } catch (_) {

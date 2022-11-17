@@ -95,15 +95,12 @@ class _BookingDetailsState extends State<BookingDetails> {
               child: ElevatedButton(
                   onPressed: () {
                     if (_enableButton) {
-                      final list = context.read<BookedHoursCubit>().state;
                       final appointment = AppointmentEntity(
                           date: _dateController.text,
                           time: _timeController.text,
                           patientId: state.id,
                           status: true);
-                      context
-                          .read<BookingCubit>()
-                          .bookAppointment(appointment, list);
+                      context.read<BookingCubit>().bookAppointment(appointment);
                     }
                   },
                   style: ButtonStyle(

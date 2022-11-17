@@ -43,6 +43,7 @@ class AppointmentEntity extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'date': date,
       'time': time,
       'patientId': patientId,

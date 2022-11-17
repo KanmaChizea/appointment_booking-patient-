@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/appontments.dart';
@@ -26,11 +28,10 @@ class BookingCubit extends Cubit<BookingState> {
         super(BookingInitial());
   final BookAppointmentUsecase _usecase;
 
-  Future<void> bookAppointment(
-      AppointmentEntity appointment, List<String> index) async {
+  Future<void> bookAppointment(AppointmentEntity appointment) async {
     try {
       emit(BookingLoading());
-      final id = await _usecase(appointment, index);
+      final id = await _usecase(appointment);
       emit(BookingSuccessful(id));
     } catch (e) {
       emit(BookingFailed());
@@ -38,6 +39,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   void reset() {
+    log('called');
     emit(BookingInitial());
   }
 }

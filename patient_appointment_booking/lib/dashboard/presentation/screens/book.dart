@@ -89,7 +89,10 @@ class BookingScreen extends StatelessWidget {
                                     ])),
                             const SizedBox(height: 16),
                             ElevatedButton.icon(
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () {
+                                  context.read<BookingCubit>().reset();
+                                  Navigator.pop(context);
+                                },
                                 label: const Text('Go home'),
                                 icon: const Icon(Icons.arrow_back))
                           ],

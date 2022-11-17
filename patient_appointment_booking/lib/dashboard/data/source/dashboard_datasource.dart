@@ -10,19 +10,15 @@ class DashboardDataSource {
   final _cloudStorage = FirebaseFirestore.instance;
   final uid = FirebaseAuth.instance.currentUser?.uid;
 
-  Future<String> bookAppointment(
-      AppointmentEntity appointment, List<String> index) async {
+  Future<String> bookAppointment(AppointmentEntity appointment) async {
+    await _cloudStorage
+        .collection('booked')
+        .doc(appointment.date.replaceAll('/', '-'))
+        .set({appointment.time: appointment.time}, SetOptions(merge: true));
     final id =
         await _cloudStorage.collection('appt $uid').add(appointment.toMap());
     await _cloudStorage.collection('appointments').add(
         appointment.copyWith(id: id.id.substring(0, 10).toUpperCase()).toMap());
-    if (index[0].length > 13) {
-      index = [appointment.time];
-    }
-    await _cloudStorage
-        .collection('booked')
-        .doc(appointment.date.replaceAll('/', '-'))
-        .set({for (var i = 0; i < index.length; i++) i.toString(): index[1]});
     return id.id;
   }
 
