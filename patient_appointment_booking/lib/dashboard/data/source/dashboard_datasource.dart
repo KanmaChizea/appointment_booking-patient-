@@ -14,6 +14,8 @@ class DashboardDataSource {
       AppointmentEntity appointment, List<String> index) async {
     final id =
         await _cloudStorage.collection('appt $uid').add(appointment.toMap());
+    await _cloudStorage.collection('appointments').add(
+        appointment.copyWith(id: id.id.substring(0, 10).toUpperCase()).toMap());
     if (index[0].length > 13) {
       index = [appointment.time];
     }
