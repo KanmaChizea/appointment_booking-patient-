@@ -1,5 +1,4 @@
 import '../../../auth/domain/entitis/user_data.dart';
-
 import '../repositories/dashboard_interface.dart';
 
 class FetchUserDataUsecase {

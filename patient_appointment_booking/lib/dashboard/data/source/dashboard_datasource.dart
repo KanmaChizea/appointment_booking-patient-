@@ -15,27 +15,31 @@ class DashboardDataSource {
         .collection('booked')
         .doc(appointment.date.replaceAll('/', '-'))
         .set({appointment.time: appointment.time}, SetOptions(merge: true));
-    final id =
-        await _cloudStorage.collection('appt $uid').add(appointment.toMap());
+    final id = await _cloudStorage
+        .collection('appt ${appointment.patientId}')
+        .add(appointment.toMap());
     await _cloudStorage.collection('appointments').add(
         appointment.copyWith(id: id.id.substring(0, 10).toUpperCase()).toMap());
     return id.id;
   }
 
   Future<void> cancelAppointment(AppointmentEntity appointment) async {
-    await _cloudStorage.collection('appt $uid').doc(appointment.id).delete();
+    await _cloudStorage
+        .collection('appt ${appointment.patientId}')
+        .doc(appointment.id)
+        .delete();
   }
 
   Future<void> editProfile(UserData data) async {
     await _cloudStorage.collection('user data').doc(uid).set(data.toMap());
   }
 
-  Stream<List<AppointmentEntity>> getActiveAppointment() {
-    return _cloudStorage.collection('appt $uid').snapshots().map((value) =>
-        value.docs
-            .map((e) => AppointmentModel.fromFirebase(e).toEntity())
-            .where((element) => element.status == true)
-            .toList());
+  Stream<List<AppointmentEntity>> getActiveAppointment(String id) {
+    return _cloudStorage.collection('appt $id').snapshots().map((value) => value
+        .docs
+        .map((e) => AppointmentModel.fromFirebase(e).toEntity())
+        .where((element) => element.status == true)
+        .toList());
   }
 
   Stream<UserData> fetchData(String id) {
@@ -46,8 +50,8 @@ class DashboardDataSource {
         .map((value) => UserDataModel.fromFirebase(value).toEntity());
   }
 
-  Future<List<AppointmentEntity>> getAppointmentHistory() async {
-    return await _cloudStorage.collection('appt $uid').get().then((value) =>
+  Future<List<AppointmentEntity>> getAppointmentHistory(String id) async {
+    return await _cloudStorage.collection('appt $id').get().then((value) =>
         value.docs
             .map((e) => AppointmentModel.fromFirebase(e).toEntity())
             .where((element) => element.status == false)

@@ -5,13 +5,27 @@ import '../../domain/entities/appontments.dart';
 import '../bloc/appointment_management_cubit.dart';
 
 import '../../../core/responsive.dart';
+import '../bloc/user_data_cubit.dart';
 import '../widgets/appbar.dart';
 import '../widgets/book_appointment_button.dart';
 import '../widgets/failed_state.dart';
 import '../widgets/welcome_user.dart';
 
-class AppointmentsScreen extends StatelessWidget {
+class AppointmentsScreen extends StatefulWidget {
   const AppointmentsScreen({super.key});
+
+  @override
+  State<AppointmentsScreen> createState() => _AppointmentsScreenState();
+}
+
+class _AppointmentsScreenState extends State<AppointmentsScreen> {
+  @override
+  void initState() {
+    context
+        .read<AppointmentManagementCubit>()
+        .getAppointments(context.read<UserDataCubit>().state.id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +55,12 @@ class AppointmentsScreen extends StatelessWidget {
               const SizedBox(height: 16),
               BlocBuilder<AppointmentManagementCubit, AppointmentState>(
                 builder: (context, state) {
+                  final id = context.read<UserDataCubit>().state.id;
                   if (state is AppointmentFailed) {
                     return FailedState(
                         onPressed: () => context
                             .read<AppointmentManagementCubit>()
-                            .getAppointments());
+                            .getAppointments(id));
                   } else if (state is AppointmentLoaded) {
                     if (state.appoinments.isNotEmpty) {
                       const List<TableRow> tableList = [

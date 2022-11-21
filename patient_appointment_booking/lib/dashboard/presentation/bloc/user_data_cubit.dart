@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../auth/domain/entitis/user_data.dart';
 import '../../domain/usecases/fetch_user.dart';
 

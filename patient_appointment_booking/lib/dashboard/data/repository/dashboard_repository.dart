@@ -36,18 +36,18 @@ class DashboardRepository implements DashboardInterface {
   }
 
   @override
-  Stream<List<AppointmentEntity>> getActiveAppointment() {
+  Stream<List<AppointmentEntity>> getActiveAppointment(String id) {
     try {
-      return _dataSource.getActiveAppointment();
+      return _dataSource.getActiveAppointment(id);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<List<AppointmentEntity>> getAppointmentHistory() async {
+  Future<List<AppointmentEntity>> getAppointmentHistory(String id) async {
     try {
-      return await _dataSource.getAppointmentHistory();
+      return await _dataSource.getAppointmentHistory(id);
     } catch (e) {
       rethrow;
     }

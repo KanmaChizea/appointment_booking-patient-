@@ -36,10 +36,10 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
   final ActiveAppointmentUsecase _activeAppointmentUsecase;
   final CancelAppointmentUsecase _cancelAppointmentUsecase;
 
-  Future<void> getAppointments() async {
+  Future<void> getAppointments(String id) async {
     try {
       emit(AppointmentLoading());
-      final appointments = _activeAppointmentUsecase();
+      final appointments = _activeAppointmentUsecase(id);
       appointments.listen((event) {
         event.sort((a, b) {
           int cmp = a.date.compareTo(b.date);
@@ -59,7 +59,7 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
     try {
       emit(AppointmentLoading());
       await _cancelAppointmentUsecase(appointment);
-      getAppointments();
+      getAppointments(appointment.patientId);
     } catch (_) {
       emit(AppointmentFailed());
     }

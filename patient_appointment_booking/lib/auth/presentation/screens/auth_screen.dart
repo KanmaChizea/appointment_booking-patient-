@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking/dashboard/presentation/bloc/user_data_cubit.dart';
+import '../../../dashboard/presentation/bloc/user_data_cubit.dart';
 import '../../../dashboard/presentation/screens/dashboard.dart';
 import '../../../core/responsive.dart';
 import '../bloc/auth_cubit.dart';
@@ -78,7 +78,10 @@ class AuthScreen extends StatelessWidget {
                 Navigator.pop(dialogContext);
                 //fetch user data
                 context.read<UserDataCubit>().fetchUser(state.uid);
+                //fetch appointment
+
                 //navigate
+
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => const Dashboard()),
                     (route) => false);

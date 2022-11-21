@@ -1,5 +1,4 @@
 import '../entities/appontments.dart';
-
 import '../repositories/dashboard_interface.dart';
 
 class ActiveAppointmentUsecase {
@@ -7,7 +6,7 @@ class ActiveAppointmentUsecase {
       : _dashboardInterface = dashboardInterface;
   final DashboardInterface _dashboardInterface;
 
-  Stream<List<AppointmentEntity>> call() {
-    return _dashboardInterface.getActiveAppointment();
+  Stream<List<AppointmentEntity>> call(String id) {
+    return _dashboardInterface.getActiveAppointment(id);
   }
 }

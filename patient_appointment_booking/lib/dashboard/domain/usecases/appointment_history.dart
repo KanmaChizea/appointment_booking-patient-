@@ -6,7 +6,7 @@ class AppointmentHistoryUsecase {
       : _dashboardInterface = dashboardInterface;
   final DashboardInterface _dashboardInterface;
 
-  Future<List<AppointmentEntity>> call() async {
-    return await _dashboardInterface.getAppointmentHistory();
+  Future<List<AppointmentEntity>> call(String id) async {
+    return await _dashboardInterface.getAppointmentHistory(id);
   }
 }

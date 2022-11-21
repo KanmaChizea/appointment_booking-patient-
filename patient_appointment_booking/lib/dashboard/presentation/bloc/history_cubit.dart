@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/entities/appontments.dart';
 import '../../domain/usecases/appointment_history.dart';
 
@@ -26,10 +27,10 @@ class HistoryCubit extends Cubit<HistoryState> {
         super(HistoryInitial());
   final AppointmentHistoryUsecase _usecase;
 
-  Future<void> getHistory() async {
+  Future<void> getHistory(String id) async {
     try {
       emit(HistoryLoading());
-      final appointments = await _usecase();
+      final appointments = await _usecase(id);
       emit(HistoryLoaded(appointments));
     } catch (e) {
       emit(HistoryFailed());

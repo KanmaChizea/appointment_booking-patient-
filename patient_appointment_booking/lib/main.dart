@@ -39,14 +39,13 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) =>
-              di.sl<AppointmentManagementCubit>()..getAppointments(),
+          create: (context) => di.sl<AppointmentManagementCubit>(),
         ),
         BlocProvider(
           create: (context) => di.sl<BookingCubit>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<HistoryCubit>()..getHistory(),
+          create: (context) => di.sl<HistoryCubit>(),
         ),
         BlocProvider(
           create: (context) => di.sl<EditProfileCubit>(),

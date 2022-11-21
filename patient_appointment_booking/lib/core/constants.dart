@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../dashboard/data/models/dashboard_element.dart';
 import '../dashboard/presentation/screens/appointment.dart';
-import '../dashboard/presentation/screens/history.dart';
 import '../dashboard/presentation/screens/edit_profile.dart';
+import '../dashboard/presentation/screens/history.dart';
 
 List<DashboardElement> dashboardElementList = [
   DashboardElement(
