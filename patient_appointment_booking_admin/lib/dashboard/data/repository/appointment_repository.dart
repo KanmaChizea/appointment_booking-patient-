@@ -9,13 +9,11 @@ class AppointmentRepository implements AppointmentInterface {
 
   @override
   Stream<List<AppointmentEntity>> getAllAppointments() {
-    // TODO: implement getAllAppointments
-    throw UnimplementedError();
+    return _dataSource.getAllAppointments();
   }
 
   @override
-  Future<void> markAsFulfilled(AppointmentEntity appointment) {
-    // TODO: implement markAsFulfilled
-    throw UnimplementedError();
+  Future<void> markAsFulfilled(AppointmentEntity appointment) async {
+    await _dataSource.markAsFulfilled(appointment);
   }
 }

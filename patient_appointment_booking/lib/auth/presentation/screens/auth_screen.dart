@@ -72,7 +72,7 @@ class AuthScreen extends StatelessWidget {
                 Navigator.pop(dialogContext);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(state.errorMessage),
-                  duration: const Duration(seconds: 3),
+                  duration: const Duration(seconds: 1),
                 ));
               }
               if (state is AuthSignedIn) {

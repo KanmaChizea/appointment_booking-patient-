@@ -23,9 +23,9 @@ class _BookingDetailsState extends State<BookingDetails> {
   void initState() {
     _dateController = TextEditingController();
     _timeController = TextEditingController();
-    selectedDate = (DateTime.now().weekday == 7)
-        ? DateTime.now().add(const Duration(days: 1))
-        : DateTime.now();
+    selectedDate = DateTime.now().weekday == 6
+        ? DateTime.now().add(const Duration(days: 2))
+        : DateTime.now().add(const Duration(days: 1));
     super.initState();
   }
 
@@ -44,7 +44,9 @@ class _BookingDetailsState extends State<BookingDetails> {
                   initialDate: selectedDate,
                   initialDatePickerMode: DatePickerMode.day,
                   selectableDayPredicate: (val) {
-                    return val.weekday == 7 ? false : true;
+                    return val.weekday == 7 || val.day == DateTime.now().day
+                        ? false
+                        : true;
                   },
                   firstDate: DateTime.now(),
                   lastDate: DateTime(

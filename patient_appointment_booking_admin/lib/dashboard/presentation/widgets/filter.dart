@@ -11,10 +11,7 @@ class FilterButton extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Icon(
-          Icons.filter_alt_outlined,
-          color: Colors.grey,
-        ),
+        const Text('Filter:'),
         // const Spacer(),
         DropdownButtonHideUnderline(
           child: ButtonTheme(
