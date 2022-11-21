@@ -29,7 +29,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DashboardAppbar(context: context, title: 'Historys history'),
+      appBar: DashboardAppbar(context: context, title: 'Appointment history'),
       body: SingleChildScrollView(
           padding: Responsive.isDesktop(context)
               ? const EdgeInsets.fromLTRB(80, 36, 80, 0)

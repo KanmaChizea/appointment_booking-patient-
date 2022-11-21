@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../dashboard/presentation/bloc/appointment_management_cubit.dart';
 import '../../../dashboard/presentation/bloc/user_data_cubit.dart';
 import '../../../dashboard/presentation/screens/dashboard.dart';
 import '../../../core/responsive.dart';
@@ -54,7 +55,7 @@ class AuthScreen extends StatelessWidget {
               ),
             ),
           BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
+            listener: (context, state) async {
               BuildContext dialogContext = context;
               if (state is AuthLoading) {
                 showDialog(
@@ -79,7 +80,12 @@ class AuthScreen extends StatelessWidget {
                 //fetch user data
                 context.read<UserDataCubit>().fetchUser(state.uid);
                 //fetch appointment
-
+                await Future.delayed(
+                    const Duration(seconds: 3),
+                    () => context
+                        .read<AppointmentManagementCubit>()
+                        .getAppointments(
+                            context.read<UserDataCubit>().state.id));
                 //navigate
 
                 Navigator.of(context).pushAndRemoveUntil(

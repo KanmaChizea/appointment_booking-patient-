@@ -39,6 +39,7 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
   Future<void> getAppointments(String id) async {
     try {
       emit(AppointmentLoading());
+      print('hi $id');
       final appointments = _activeAppointmentUsecase(id);
       appointments.listen((event) {
         event.sort((a, b) {

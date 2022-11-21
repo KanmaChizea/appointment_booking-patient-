@@ -11,21 +11,8 @@ import '../widgets/book_appointment_button.dart';
 import '../widgets/failed_state.dart';
 import '../widgets/welcome_user.dart';
 
-class AppointmentsScreen extends StatefulWidget {
+class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key});
-
-  @override
-  State<AppointmentsScreen> createState() => _AppointmentsScreenState();
-}
-
-class _AppointmentsScreenState extends State<AppointmentsScreen> {
-  @override
-  void initState() {
-    context
-        .read<AppointmentManagementCubit>()
-        .getAppointments(context.read<UserDataCubit>().state.id);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

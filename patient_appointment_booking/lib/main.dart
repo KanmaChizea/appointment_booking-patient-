@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) => di.sl<AppointmentManagementCubit>(),
+          create: (context) => di.sl<UserDataCubit>(),
         ),
         BlocProvider(
           create: (context) => di.sl<BookingCubit>(),
@@ -51,11 +51,9 @@ class MyApp extends StatelessWidget {
           create: (context) => di.sl<EditProfileCubit>(),
         ),
         BlocProvider(
-          create: (context) => di.sl<UserDataCubit>(),
-        ),
-        BlocProvider(
           create: (context) => di.sl<BookedHoursCubit>(),
         ),
+        BlocProvider(create: (context) => di.sl<AppointmentManagementCubit>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

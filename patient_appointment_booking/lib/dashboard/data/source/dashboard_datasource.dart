@@ -18,8 +18,9 @@ class DashboardDataSource {
     final id = await _cloudStorage
         .collection('appt ${appointment.patientId}')
         .add(appointment.toMap());
-    await _cloudStorage.collection('appointments').add(
-        appointment.copyWith(id: id.id.substring(0, 10).toUpperCase()).toMap());
+    await _cloudStorage
+        .collection('appointments')
+        .add(appointment.copyWith(id: id.id).toMap());
     return id.id;
   }
 

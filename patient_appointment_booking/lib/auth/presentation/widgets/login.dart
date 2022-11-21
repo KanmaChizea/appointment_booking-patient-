@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../dashboard/presentation/bloc/appointment_management_cubit.dart';
+import '../../../dashboard/presentation/bloc/user_data_cubit.dart';
 import '../bloc/bloc/auth_bloc.dart';
 import 'authform_layout.dart';
 
@@ -46,6 +48,9 @@ class _LoginState extends State<Login> {
               if (_key.currentState!.validate()) {
                 context.read<AuthBloc>().add(
                     AuthSignIn(email: email.text, password: password.text));
+                final id = context.read<UserDataCubit>().state.id;
+
+                context.read<AppointmentManagementCubit>().getAppointments(id);
               }
             },
             child: const Text('Login'))
