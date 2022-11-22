@@ -1,6 +1,8 @@
-import 'package:patient_appointment_booking_admin/dashboard/data/source/appointment_datasource.dart';
-import 'package:patient_appointment_booking_admin/dashboard/domain/entity/appontments.dart';
-import 'package:patient_appointment_booking_admin/dashboard/domain/interface/appointment_interface.dart';
+import 'package:patient_appointment_booking_admin/dashboard/domain/entity/user_entity.dart';
+
+import '../source/appointment_datasource.dart';
+import '../../domain/entity/appontments.dart';
+import '../../domain/interface/appointment_interface.dart';
 
 class AppointmentRepository implements AppointmentInterface {
   AppointmentRepository(AppointmentDataSource dataSource)
@@ -15,5 +17,10 @@ class AppointmentRepository implements AppointmentInterface {
   @override
   Future<void> markAsFulfilled(AppointmentEntity appointment) async {
     await _dataSource.markAsFulfilled(appointment);
+  }
+
+  @override
+  Stream<List<UserData>> getAllUsers() {
+    return _dataSource.getUser();
   }
 }

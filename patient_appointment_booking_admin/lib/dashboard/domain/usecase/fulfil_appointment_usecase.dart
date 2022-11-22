@@ -1,5 +1,5 @@
-import 'package:patient_appointment_booking_admin/dashboard/domain/entity/appontments.dart';
-import 'package:patient_appointment_booking_admin/dashboard/domain/interface/appointment_interface.dart';
+import '../entity/appontments.dart';
+import '../interface/appointment_interface.dart';
 
 class FulfilAppointmentUsecase {
   FulfilAppointmentUsecase(AppointmentInterface appointmentInterface)

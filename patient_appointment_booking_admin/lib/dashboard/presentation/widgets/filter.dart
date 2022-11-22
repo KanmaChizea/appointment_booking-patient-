@@ -1,11 +1,19 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_appointment_booking_admin/dashboard/presentation/cubit/appointment_cubit.dart';
 
-class FilterButton extends StatelessWidget {
+class FilterButton extends StatefulWidget {
   const FilterButton({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<FilterButton> createState() => _FilterButtonState();
+}
+
+class _FilterButtonState extends State<FilterButton> {
+  String filter = 'All';
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,11 +27,16 @@ class FilterButton extends StatelessWidget {
             child: DropdownButton2(
                 buttonHeight: 40,
                 itemHeight: 40,
-                value: 'All',
+                value: filter,
                 items: ['All', 'Pending']
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
-                onChanged: (value) {}),
+                onChanged: (value) {
+                  setState(() {
+                    filter = value!;
+                  });
+                  context.read<AppointmentCubit>().filterAppointment(value!);
+                }),
           ),
         )
       ],

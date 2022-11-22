@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:patient_appointment_booking_admin/auth/domain/usecase/sign_in_usecase.dart';
+import '../../domain/usecase/sign_in_usecase.dart';
 
 part 'auth_state.dart';
 

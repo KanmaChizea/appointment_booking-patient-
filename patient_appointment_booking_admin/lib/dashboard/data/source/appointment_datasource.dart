@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:patient_appointment_booking_admin/dashboard/data/model/appointment_model.dart';
+import 'package:intl/intl.dart';
+import 'package:patient_appointment_booking_admin/dashboard/data/model/user_model.dart';
+import 'package:patient_appointment_booking_admin/dashboard/domain/entity/user_entity.dart';
+import '../model/appointment_model.dart';
 
 import '../../domain/entity/appontments.dart';
 
@@ -11,8 +14,9 @@ class AppointmentDataSource {
         event.docs
             .map((e) => AppointmentModel.fromFirebase(e).toEntity())
             .toList()
-          ..removeWhere((element) =>
-              DateTime.parse(element.date).isBefore(DateTime.now())));
+          ..removeWhere((element) => DateFormat('MM/dd/yyyy')
+              .parse(element.date)
+              .isBefore(DateTime.now())));
 
     return list;
   }
@@ -21,6 +25,13 @@ class AppointmentDataSource {
     await _dbase
         .collection('appt ${appointment.patientId}')
         .doc(appointment.id)
-        .update(appointment.copyWith(status: false).toMap());
+        .update(appointment.copyWith(status: !appointment.status).toMap());
+    //TODO: change appointments collection too
+  }
+
+  Stream<List<UserData>> getUser() {
+    return _dbase.collection('user data').snapshots().map((event) => event.docs
+        .map((e) => UserDataModel.fromFirebase(e).toEntity())
+        .toList());
   }
 }
