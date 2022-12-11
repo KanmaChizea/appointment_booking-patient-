@@ -77,10 +77,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                   child: Text('APPOINTMENT TIME',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold))),
-                              AppointmentCell(
-                                  child: Text('APPOINTMENT STATUS',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold))),
                             ])
                           ];
                           List<TableRow> historyList = state.appointments
