@@ -20,6 +20,11 @@ class AppointmentRepository implements AppointmentInterface {
   }
 
   @override
+  Future<void> markAsProcessed(AppointmentEntity appointment) async {
+    await _dataSource.markAsProcessed(appointment);
+  }
+
+  @override
   Stream<List<UserData>> getAllUsers() {
     return _dataSource.getUser();
   }

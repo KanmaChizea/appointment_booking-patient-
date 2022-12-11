@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:patient_appointment_booking_admin/dashboard/presentation/cubit/selected_cubit.dart';
+import 'package:patient_appointment_booking_admin/dashboard/presentation/cubit/appointment_cubit.dart';
 import '../widgets/appbar.dart';
 import 'mobile.dart';
 import '../../../responsive.dart';
@@ -13,7 +13,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.read<SelectedCubit>().clear(),
+      onTap: () => context.read<AppointmentCubit>().clearAppointment(),
       child: Scaffold(
         body: Column(children: [
           const SizedBox(height: 8),

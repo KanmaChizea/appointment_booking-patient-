@@ -21,7 +21,9 @@ class AppointmentsScreen extends StatelessWidget {
       body: SingleChildScrollView(
           padding: Responsive.isDesktop(context)
               ? const EdgeInsets.fromLTRB(80, 36, 80, 0)
-              : const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              : Responsive.isTablet(context)
+                  ? const EdgeInsets.fromLTRB(40, 24, 40, 0)
+                  : const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -105,7 +107,7 @@ class AppointmentsScreen extends StatelessWidget {
 class AppointmentRow extends TableRow {
   AppointmentRow(AppointmentEntity item, BuildContext context)
       : super(children: [
-          AppointmentCell(child: Text(item.id!)),
+          AppointmentCell(child: Text(item.id!.substring(0, 10).toUpperCase())),
           AppointmentCell(child: Text(item.date)),
           AppointmentCell(child: Text(item.time)),
           if (item.status)

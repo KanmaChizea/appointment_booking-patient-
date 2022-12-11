@@ -14,19 +14,33 @@ class AppointmentDataSource {
         event.docs
             .map((e) => AppointmentModel.fromFirebase(e).toEntity())
             .toList()
-          ..removeWhere((element) => DateFormat('MM/dd/yyyy')
-              .parse(element.date)
-              .isBefore(DateTime.now())));
+          ..removeWhere((element) {
+            return DateFormat('MM/dd/yyyy').parse(element.date).day !=
+                DateTime.now().day;
+          }));
 
     return list;
   }
 
   Future<void> markAsFulfilled(AppointmentEntity appointment) async {
     await _dbase
+        .collection('appointments')
+        .doc(appointment.docid)
+        .update(appointment.copyWith(status: !appointment.status).toMap());
+    await _dbase
         .collection('appt ${appointment.patientId}')
         .doc(appointment.id)
         .update(appointment.copyWith(status: !appointment.status).toMap());
-    //TODO: change appointments collection too
+  }
+
+  Future<void> markAsProcessed(AppointmentEntity appointment) async {
+    await _dbase.collection('appointments').doc(appointment.docid).update(
+        appointment.copyWith(processed: !appointment.processed).toMap());
+    await _dbase
+        .collection('appt ${appointment.patientId}')
+        .doc(appointment.id)
+        .update(
+            appointment.copyWith(processed: !appointment.processed).toMap());
   }
 
   Stream<List<UserData>> getUser() {

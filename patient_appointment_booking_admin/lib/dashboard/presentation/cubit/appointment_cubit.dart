@@ -1,20 +1,40 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:patient_appointment_booking_admin/dashboard/domain/usecase/fulfil_appointment_usecase.dart';
+import 'package:patient_appointment_booking_admin/dashboard/domain/usecase/process_appointment_usecase.dart';
 import '../../domain/entity/appontments.dart';
-import '../../domain/usecase/fulfil_appointment_usecase.dart';
 import '../../domain/usecase/get_appointments_usecase.dart';
 
-class AppointmentCubit extends Cubit<List<AppointmentEntity>> {
-  AppointmentCubit(GetAppointmentUsecase usecase)
-      : _usecase = usecase,
-        super([]);
+class AppointmentCubitState {
+  final List<AppointmentEntity> appointmentList;
+  final int selected;
 
-  final GetAppointmentUsecase _usecase;
+  AppointmentCubitState(this.appointmentList, this.selected);
+
+  AppointmentCubitState copyWith(
+          {List<AppointmentEntity>? appointmentList, int? selected}) =>
+      AppointmentCubitState(
+          appointmentList ?? this.appointmentList, selected ?? this.selected);
+}
+
+class AppointmentCubit extends Cubit<AppointmentCubitState> {
+  AppointmentCubit(
+      {required GetAppointmentUsecase getUsecase,
+      required FulfilAppointmentUsecase fulfilUsecase,
+      required ProcessAppointmentUsecase processUsecase})
+      : _getUsecase = getUsecase,
+        _fulfilUsecase = fulfilUsecase,
+        _processUsecase = processUsecase,
+        super(AppointmentCubitState([], 0));
+
+  final GetAppointmentUsecase _getUsecase;
+  final FulfilAppointmentUsecase _fulfilUsecase;
+  final ProcessAppointmentUsecase _processUsecase;
   List<AppointmentEntity> appointments = [];
 
   void getAppointments() {
-    _usecase().listen((event) {
+    _getUsecase().listen((event) {
       appointments = [...event];
-      emit(event);
+      emit(state.copyWith(appointmentList: appointments));
     });
   }
 
@@ -23,10 +43,26 @@ class AppointmentCubit extends Cubit<List<AppointmentEntity>> {
     if (filter == 'Pending') {
       final List<AppointmentEntity> newList =
           list.where((element) => element.status == true).toList();
-      emit(newList);
+      emit(state.copyWith(appointmentList: newList));
     } else {
       reset();
     }
+  }
+
+  void selectAppointment(int select) {
+    emit(state.copyWith(selected: select + 1));
+  }
+
+  void clearAppointment() {
+    emit(state.copyWith(selected: 0));
+  }
+
+  void fulfillAppointment(AppointmentEntity appointment) async {
+    await _fulfilUsecase(appointment);
+  }
+
+  void processAppointment(AppointmentEntity appointment) async {
+    await _processUsecase(appointment);
   }
 
   void search(String value) {
@@ -36,22 +72,10 @@ class AppointmentCubit extends Cubit<List<AppointmentEntity>> {
         searched.add(i);
       }
     }
-    emit(searched);
+    emit(state.copyWith(appointmentList: searched));
   }
 
   void reset() {
-    emit(appointments);
-  }
-}
-
-class FulfillCubit extends Cubit<bool> {
-  FulfillCubit(FulfilAppointmentUsecase usecase)
-      : _usecase = usecase,
-        super(false);
-  final FulfilAppointmentUsecase _usecase;
-
-  void toggleFulfillment(AppointmentEntity appointment) async {
-    await _usecase(appointment);
-    emit(!state);
+    emit(state.copyWith(appointmentList: appointments));
   }
 }

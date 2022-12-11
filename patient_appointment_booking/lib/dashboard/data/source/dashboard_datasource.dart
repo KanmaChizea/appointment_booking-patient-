@@ -25,10 +25,24 @@ class DashboardDataSource {
   }
 
   Future<void> cancelAppointment(AppointmentEntity appointment) async {
-    await _cloudStorage
-        .collection('appt ${appointment.patientId}')
-        .doc(appointment.id)
-        .delete();
+    try {
+      await _cloudStorage
+          .collection('booked')
+          .doc(appointment.date.replaceAll('/', '-'))
+          .update({appointment.time: FieldValue.delete()});
+      await _cloudStorage
+          .collection('appt ${appointment.patientId}')
+          .doc(appointment.id)
+          .delete();
+      final query = _cloudStorage
+          .collection('appointments')
+          .where('id', isEqualTo: appointment.id);
+      query.get().then((value) => value.docs.forEach((element) {
+            element.reference.delete();
+          }));
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> editProfile(UserData data) async {

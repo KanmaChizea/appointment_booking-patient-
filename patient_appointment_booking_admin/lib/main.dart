@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth/presentation/cubit/auth_cubit.dart';
 import 'auth/presentation/screens/sign_in.dart';
-import 'dashboard/presentation/cubit/selected_cubit.dart';
 import 'dashboard/presentation/cubit/user_cubit.dart';
-import 'dashboard/presentation/screens/dashboard.dart';
 import 'dashboard/presentation/cubit/appointment_cubit.dart';
 import 'dependecy_injection.dart' as di;
 import 'firebase_options.dart';
@@ -30,8 +28,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<AuthCubit>()),
         BlocProvider(
             create: (context) => di.sl<AppointmentCubit>()..getAppointments()),
-        BlocProvider(create: (context) => di.sl<FulfillCubit>()),
-        BlocProvider(create: (context) => di.sl<SelectedCubit>()),
         BlocProvider(
             create: (context) => di.sl<UserCubit>()..getAllUsers(),
             lazy: false),
@@ -41,7 +37,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
-        home: const Dashboard(),
+        home: const LoginScreen(),
       ),
     );
   }

@@ -19,7 +19,7 @@ class AppointmentModel extends Equatable {
 
   factory AppointmentModel.fromFirebase(DocumentSnapshot snapshot) =>
       AppointmentModel(
-          id: snapshot.id.substring(0, 10).toUpperCase(),
+          id: snapshot.id,
           date: snapshot['date'],
           time: snapshot['time'],
           patientId: snapshot['patientId'],

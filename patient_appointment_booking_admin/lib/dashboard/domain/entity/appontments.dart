@@ -7,6 +7,8 @@ class AppointmentEntity extends Equatable {
   final String date;
   final String time;
   final String patientId;
+  final String docid;
+  final bool processed;
   //true for active, false for fulfilled
   final bool status;
 
@@ -15,6 +17,8 @@ class AppointmentEntity extends Equatable {
     required this.date,
     required this.time,
     required this.patientId,
+    required this.processed,
+    required this.docid,
     required this.status,
   });
 
@@ -30,13 +34,17 @@ class AppointmentEntity extends Equatable {
     String? date,
     String? time,
     String? patientId,
+    String? docid,
     bool? status,
+    bool? processed,
   }) {
     return AppointmentEntity(
       id: id ?? this.id,
       date: date ?? this.date,
       time: time ?? this.time,
       patientId: patientId ?? this.patientId,
+      processed: processed ?? this.processed,
+      docid: docid ?? this.docid,
       status: status ?? this.status,
     );
   }
@@ -46,18 +54,20 @@ class AppointmentEntity extends Equatable {
       'date': date,
       'time': time,
       'patientId': patientId,
+      'processed': processed,
       'status': status,
     };
   }
 
   factory AppointmentEntity.fromMap(Map<String, dynamic> map) {
     return AppointmentEntity(
-      id: map['id'] ?? '',
-      date: map['date'] ?? '',
-      time: map['time'] ?? '',
-      patientId: map['patientId'] ?? '',
-      status: map['status'] ?? false,
-    );
+        id: map['id'] ?? '',
+        date: map['date'] ?? '',
+        time: map['time'] ?? '',
+        patientId: map['patientId'] ?? '',
+        status: map['status'] ?? false,
+        processed: map['processed'] ?? false,
+        docid: map['id'] ?? '');
   }
 
   String toJson() => json.encode(toMap());

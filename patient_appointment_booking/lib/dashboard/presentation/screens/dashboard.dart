@@ -28,7 +28,7 @@ class _DashboardState extends State<Dashboard> {
 
   String getClosestAppointment(List<String> dates) {
     final dateTimes = List.generate(dates.length,
-        (index) => DateFormat("dd-MM-yyyy hh:mm:ss").parse(dates[index]));
+        (index) => DateFormat("dd-MM-yyyy hh:mm").parse(dates[index]));
     final now = DateTime.now();
 
     final closetsDateTimeToNow = dateTimes.reduce(

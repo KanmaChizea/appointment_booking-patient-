@@ -59,7 +59,6 @@ class AppointmentManagementCubit extends Cubit<AppointmentState> {
     try {
       emit(AppointmentLoading());
       await _cancelAppointmentUsecase(appointment);
-      getAppointments(appointment.patientId);
     } catch (_) {
       emit(AppointmentFailed());
     }

@@ -6,4 +6,5 @@ abstract class AppointmentInterface {
   Stream<List<AppointmentEntity>> getAllAppointments();
   Stream<List<UserData>> getAllUsers();
   Future<void> markAsFulfilled(AppointmentEntity appointment);
+  Future<void> markAsProcessed(AppointmentEntity appointment);
 }

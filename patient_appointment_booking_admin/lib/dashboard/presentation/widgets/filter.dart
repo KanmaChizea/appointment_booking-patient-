@@ -20,7 +20,6 @@ class _FilterButtonState extends State<FilterButton> {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Text('Filter:'),
-        // const Spacer(),
         DropdownButtonHideUnderline(
           child: ButtonTheme(
             alignedDropdown: true,
