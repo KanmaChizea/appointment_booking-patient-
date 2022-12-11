@@ -7,6 +7,7 @@ class AppointmentModel extends Equatable {
   final String date;
   final String time;
   final String patientId;
+  final bool processed;
   //true for active, false for fulfilled
   final bool status;
   const AppointmentModel({
@@ -14,6 +15,7 @@ class AppointmentModel extends Equatable {
     required this.date,
     required this.time,
     required this.patientId,
+    required this.processed,
     required this.status,
   });
 
@@ -23,10 +25,16 @@ class AppointmentModel extends Equatable {
           date: snapshot['date'],
           time: snapshot['time'],
           patientId: snapshot['patientId'],
+          processed: snapshot['processed'],
           status: snapshot['status']);
 
   AppointmentEntity toEntity() => AppointmentEntity(
-      id: id, date: date, time: time, patientId: patientId, status: status);
+      id: id,
+      date: date,
+      time: time,
+      patientId: patientId,
+      processed: processed,
+      status: status);
 
   @override
   List<Object?> get props => [id];

@@ -101,6 +101,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                           date: _dateController.text,
                           time: _timeController.text,
                           patientId: state.id,
+                          processed: false,
                           status: true);
                       context.read<BookingCubit>().bookAppointment(appointment);
                     }

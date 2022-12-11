@@ -7,6 +7,7 @@ class AppointmentEntity extends Equatable {
   final String date;
   final String time;
   final String patientId;
+  final bool processed;
   //true for active, false for fulfilled
   final bool status;
 
@@ -15,6 +16,7 @@ class AppointmentEntity extends Equatable {
     required this.date,
     required this.time,
     required this.patientId,
+    required this.processed,
     required this.status,
   });
 
@@ -30,6 +32,7 @@ class AppointmentEntity extends Equatable {
     String? date,
     String? time,
     String? patientId,
+    bool? processed,
     bool? status,
   }) {
     return AppointmentEntity(
@@ -37,6 +40,7 @@ class AppointmentEntity extends Equatable {
       date: date ?? this.date,
       time: time ?? this.time,
       patientId: patientId ?? this.patientId,
+      processed: processed ?? this.processed,
       status: status ?? this.status,
     );
   }
@@ -47,6 +51,7 @@ class AppointmentEntity extends Equatable {
       'date': date,
       'time': time,
       'patientId': patientId,
+      'processed': processed,
       'status': status,
     };
   }
@@ -56,6 +61,7 @@ class AppointmentEntity extends Equatable {
       id: map['id'] ?? '',
       date: map['date'] ?? '',
       time: map['time'] ?? '',
+      processed: map['processed'] ?? false,
       patientId: map['patientId'] ?? '',
       status: map['status'] ?? false,
     );
